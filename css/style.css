@@ -1,162 +1,135 @@
 :root {
   /* Colors */
-  --color-background-start: #f9fafb;
-  --color-background-end: #d2d6db;
-  --color-text-primary: #171717;
-  --color-text-secondary: #525252;
+  --color-bg-gradient-start: #f9fafb;
+  --color-bg-gradient-end: #d2d6db;
   --color-white: #ffffff;
+  --color-text-main: #171717;
+  --color-text-secondary: #525252;
+  --color-credits: #777;
+  --color-link: #000;
+
+  /* Font sizes */
+  --font-size-xs: 11px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+
+  /* Line heights */
+  --line-height-sm: 20px;
+  --line-height-base: 24px;
+  --line-height-lg: 28px;
 
   /* Spacing */
-  --spacing-xs: 0.0625rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-  --spacing-xxl: 12.5rem;
+  --space-gap: 16px;
+  --space-padding: 24px;
+  --space-radius: 8px;
+  --space-credits-bottom: 24px;
+  --space-main-padding: 200px;
 
-  /* Typography */
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.75rem;
-  --font-size-2xl: 2rem;
-  --font-size-3xl: 2.25rem;
-  --line-height-tight: 1.75rem;
-
-  /* Dimensions */
-  --card-width: 21.25rem;
-  --card-width-4k: 42.5rem;
-  --profile-image-size: 3rem;
-  --profile-image-size-4k: 6rem;
-  --border-radius: 0.5rem;
+  /* Card */
+  --card-width: 340px;
+  --card-shadow: 0px 1px 2px -1px rgb(0 0 0 / 0.1), 0px 1px 3px 0 rgb(0 0 0 / 0.1);
 }
 
-/* Base styles */
 body {
   margin: 0;
-  padding: 0;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-image: linear-gradient(to bottom, var(--color-bg-gradient-start), var(--color-bg-gradient-end));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: linear-gradient(to bottom, var(--color-background-start), var(--color-background-end));
+  padding: var(--space-main-padding) 0px;
 }
 
 .card {
   width: var(--card-width);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
   background-color: var(--color-white);
-  padding: var(--spacing-lg);
-  border-radius: var(--border-radius);
-  margin: var(--spacing-xxl) 0;
+  margin: 0;
+  gap: var(--space-gap);
+  padding: var(--space-padding);
+  border-radius: var(--space-radius);
+  box-shadow: var(--card-shadow);
 }
 
 .card-header {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
+  gap: var(--space-gap);
+  align-self: stretch;
 }
 
 .profile-image {
-  width: var(--profile-image-size);
-  height: var(--profile-image-size);
-  object-fit: cover;
+  width: 48px;
+  height: 48px;
 }
 
 .profile-info {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xs);
-  flex: 1;
+  gap: 1px;
+  flex-grow: 1;
 }
 
 .profile-name {
-  font-family: 'Noto Sans', sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
   font-weight: 600;
   font-size: var(--font-size-lg);
-  line-height: var(--line-height-tight);
-  color: var(--color-text-primary);
+  line-height: var(--line-height-lg);
+  color: var(--color-text-main);
   margin: 0;
+  padding: 0;
 }
 
 .profile-handle {
+  font-weight: 400;
   font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
   color: var(--color-text-secondary);
 }
 
 .card-body {
+  margin: 0;
+  padding: 0;
+}
+
+.card-body blockquote, .card-body p {
+  font-weight: 400;
   font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
   color: var(--color-text-secondary);
-  line-height: 1.5;
+  margin: 0;
 }
 
 .credits {
-  margin-top: auto;
-  padding: var(--spacing-lg);
+  color: var(--color-credits);
+  position: fixed;
+  bottom: var(--space-credits-bottom);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--font-size-xs);
   text-align: center;
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
+  width: max-content;
 }
 
 .credits a {
-  color: var(--color-text-primary);
-  text-decoration: none;
-}
-
-.credits a:hover {
-  text-decoration: underline;
-}
-
-/* 4K Display styles (3840px) */
-@media screen and (min-width: 3840px) {
-  .card {
-    width: var(--card-width-4k);
-    padding: var(--spacing-xl);
-    gap: var(--spacing-xl);
-  }
-  
-  .profile-image {
-    width: var(--profile-image-size-4k);
-    height: var(--profile-image-size-4k);
-  }
-  
-  .profile-name {
-    font-size: var(--font-size-3xl);
-    line-height: 3.5rem;
-  }
-  
-  .profile-handle {
-    font-size: var(--font-size-xl);
-  }
-  
-  .card-body {
-    font-size: var(--font-size-2xl);
-  }
-}
-
-/* Desktop styles (1440px) */
-@media screen and (min-width: 1440px) and (max-width: 3839px) {
-  /* No specific styles needed */
-}
-
-/* Tablet styles (768px) */
-@media screen and (max-width: 768px) {
-  .card-header {
-    justify-content: center;
-  }
-}
-
-/* Mobile styles (375px) */
-@media screen and (max-width: 375px) {
-  .card {
-    width: calc(100% - var(--spacing-xl));
-    margin: var(--spacing-xxl) var(--spacing-md);
-  }
-  
-  .card-header {
-    justify-content: center;
-  }
+  color: var(--color-link);
+  font-weight: bold;
 }
